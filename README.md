@@ -39,6 +39,9 @@ Once Stage 1 is complete, prepare the data for Stage 2 training by running the f
 
 ### Step 3: Stage 2 Training
 Train the Stage 2 anatomically-guided grounding network. This step updates all learnable parameters in the module.
+
+The Stage 2 image encoder utilizes a truncated lightweight 3D CNN (dropping the deepest layer to form a `32->64->128->256->320` channel progression). This reduces the encoder's parameter count to approximately ~50M, compared to the ~102M parameters of the full 3D U-Net used in Stage 1.
+
 ```bash
 python train.py
 ```
